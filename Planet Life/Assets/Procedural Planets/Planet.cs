@@ -2,10 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Planet : MonoBehaviour {
+public class Planet : MonoBehaviour
+{
 
-    [Range(2,256)]
+    [Range(2, 256)]
     public int resolution = 10;
+
+    [Range(2, 256)]
+    public int ocean_resolution;
+   
+
     public bool autoUpdate = true;
     public enum FaceRenderMask { All, Top, Bottom, Left, Right, Front, Back };
     public FaceRenderMask faceRenderMask;
@@ -18,15 +24,23 @@ public class Planet : MonoBehaviour {
     [HideInInspector]
     public bool colourSettingsFoldout;
 
+    [Tooltip("Ocean Settings")]
+    [Range(0, 10)]
+    public float OceanMultiplier = 0;
+    [Range(0, 50)]
+    public float OceanOffset;
+    [Range(1, 2)]
+    public float OceanUpOffset;
+
     ShapeGenerator shapeGenerator = new ShapeGenerator();
     ColourGenerator colourGenerator = new ColourGenerator();
 
     [SerializeField, HideInInspector]
     MeshFilter[] meshFilters;
     TerrainFace[] terrainFaces;
-     
 
-	void Initialize()
+
+    void Initialize()
     {
         shapeGenerator.UpdateSettings(shapeSettings);
         colourGenerator.UpdateSettings(colourSettings);
@@ -49,10 +63,11 @@ public class Planet : MonoBehaviour {
                 meshObj.AddComponent<MeshRenderer>();
                 meshFilters[i] = meshObj.AddComponent<MeshFilter>();
                 meshFilters[i].sharedMesh = new Mesh();
-            }
-            meshFilters[i].GetComponent<MeshRenderer>().sharedMaterial = colourSettings.planetMaterial;
 
-            terrainFaces[i] = new TerrainFace(shapeGenerator, meshFilters[i].sharedMesh, resolution, directions[i]);
+            }
+             meshFilters[i].GetComponent<MeshRenderer>().sharedMaterial = colourSettings.planetMaterial;
+
+            terrainFaces[i] = new TerrainFace(shapeGenerator, meshFilters[i].sharedMesh, resolution, directions[i], OceanMultiplier, ocean_resolution, OceanOffset,OceanUpOffset);
             bool renderFace = faceRenderMask == FaceRenderMask.All || (int)faceRenderMask - 1 == i;
             meshFilters[i].gameObject.SetActive(renderFace);
         }
@@ -85,11 +100,20 @@ public class Planet : MonoBehaviour {
 
     void GenerateMesh()
     {
+      
+
         for (int i = 0; i < 6; i++)
         {
             if (meshFilters[i].gameObject.activeSelf)
             {
                 terrainFaces[i].ConstructMesh();
+
+                GameObject ocean_meshObj = new GameObject("ocean_mesh");
+                ocean_meshObj.transform.parent = transform;
+
+                ocean_meshObj.AddComponent<MeshRenderer>();
+                ocean_meshObj.AddComponent<MeshFilter>().sharedMesh = terrainFaces[i].oceanMesh;
+
             }
         }
 
