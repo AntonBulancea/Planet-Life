@@ -1,3 +1,4 @@
+%YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!114 &-8136946654931607034
 MonoBehaviour:
@@ -88,8 +89,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_a5e02f6108b246cc9c9d4db047e991c5: 1.27
-    - Vector1_f3bc5167661941f1ad61b874583e5bc3: 1.72
+    - Vector1_2e96130812ac4b1596191c283de6dc34: 0
+    - Vector1_a5e02f6108b246cc9c9d4db047e991c5: 1.1
+    - Vector1_f3bc5167661941f1ad61b874583e5bc3: 2.75
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -117,7 +119,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_0db2b3db14ef408c833bc195682d66c3: {r: 0, g: 0, b: 0, a: 0}
+    - Color_0db2b3db14ef408c833bc195682d66c3: {r: 0, g: 0.9622642, b: 0.65843326, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

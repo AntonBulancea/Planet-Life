@@ -26,7 +26,7 @@ MonoBehaviour:
     ctime1: 15227
     ctime2: 21974
     ctime3: 40285
-    ctime4: 50308
+    ctime4: 51272
     ctime5: 65535
     ctime6: 65535
     ctime7: 65535
@@ -42,3 +42,4 @@ MonoBehaviour:
     m_NumColorKeys: 5
     m_NumAlphaKeys: 2
   planetMaterial: {fileID: 2100000, guid: d6570cc21b41742188eca71a4bb8d9e7, type: 2}
+  oceanMaterial: {fileID: 2100000, guid: 6321a452befa4104a963277c0c22615f, type: 2}

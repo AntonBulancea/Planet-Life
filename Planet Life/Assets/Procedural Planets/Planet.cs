@@ -113,7 +113,7 @@ public class Planet : MonoBehaviour
 
                 ocean_meshObj.AddComponent<MeshRenderer>();
                 ocean_meshObj.AddComponent<MeshFilter>().sharedMesh = terrainFaces[i].oceanMesh;
-
+                ocean_meshObj.GetComponent<MeshRenderer>().sharedMaterial = colourSettings.oceanMaterial;
             }
         }
 
